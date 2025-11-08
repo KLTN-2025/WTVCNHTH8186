@@ -15,12 +15,14 @@ use App\Http\Controllers\{
     MajorUniversityController
 };
 
+use App\Http\Controllers\User\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Trang chính
 |--------------------------------------------------------------------------
 */
-Route::get('/', fn() => view('welcome'))->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 /*
 |--------------------------------------------------------------------------
