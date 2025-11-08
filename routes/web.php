@@ -17,6 +17,7 @@ use App\Http\Controllers\{
 
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\UserSurveyController;
+use App\Http\Controllers\User\ChatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,9 +33,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/admin/login', [AuthController::class, 'showLoginForm'])->name('login.form');
+Route::post('/admin/login', [AuthController::class, 'login'])->name('login');
+Route::get('/admin/logout', [AuthController::class, 'logout'])->name('logout');
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,8 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/survey', [UserSurveyController::class, 'index'])->name('survey.index');
 Route::post('/survey', [UserSurveyController::class, 'store'])->name('survey.store');
+Route::get('/chat', [ChatController::class, 'index'])->name('user.chat');
+Route::post('/chat/send', [ChatController::class, 'send'])->name('user.chat.send');
 
 Route::middleware(['auth', 'is_user'])->group(function () {
     // Khảo sát định hướng
