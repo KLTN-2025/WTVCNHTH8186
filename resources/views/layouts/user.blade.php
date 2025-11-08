@@ -170,7 +170,7 @@
                         class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                         <i class="fa-solid fa-book-open-reader"></i><span>Tài liệu hướng dẫn</span>
                     </a>
-                    <a href="#"
+                    <a href="{{ route('user.support') }}" data-path="/support"
                         class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                         <i class="fa-solid fa-headset"></i><span>Liên hệ hỗ trợ</span>
                     </a>

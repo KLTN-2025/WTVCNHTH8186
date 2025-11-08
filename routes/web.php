@@ -56,6 +56,10 @@ Route::get('/guide', function () {
     return view('user.guide');
 })->name('user.guide');
 
+Route::get('/support', function () {
+    return view('user.support');
+})->name('user.support');
+
 Route::middleware(['auth', 'is_user'])->group(function () {
     // Khảo sát định hướng
 
