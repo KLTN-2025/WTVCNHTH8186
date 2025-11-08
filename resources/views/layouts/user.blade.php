@@ -166,7 +166,7 @@
 
                 <div class="pt-3 mt-3 border-t border-gray-200 dark:border-gray-800">
                     <div class="px-3 pb-1 text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">Hỗ trợ</div>
-                    <a href="#"
+                    <a href="{{ route('user.guide') }}" data-path="/guide"
                         class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                         <i class="fa-solid fa-book-open-reader"></i><span>Tài liệu hướng dẫn</span>
                     </a>

@@ -51,6 +51,11 @@ Route::post('/chat/send', [ChatController::class, 'send'])->name('user.chat.send
 
 Route::get('/universities', [UserUniversityController::class, 'index'])->name('user.universities');
 
+
+Route::get('/guide', function () {
+    return view('user.guide');
+})->name('user.guide');
+
 Route::middleware(['auth', 'is_user'])->group(function () {
     // Khảo sát định hướng
 
