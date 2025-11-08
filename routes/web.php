@@ -18,6 +18,7 @@ use App\Http\Controllers\{
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\UserSurveyController;
 use App\Http\Controllers\User\ChatController;
+use App\Http\Controllers\User\UserUniversityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,8 @@ Route::post('/survey', [UserSurveyController::class, 'store'])->name('survey.sto
 Route::get('/chat', [ChatController::class, 'index'])->name('user.chat');
 Route::post('/chat/send', [ChatController::class, 'send'])->name('user.chat.send');
 
+Route::get('/universities', [UserUniversityController::class, 'index'])->name('user.universities');
+
 Route::middleware(['auth', 'is_user'])->group(function () {
     // Khảo sát định hướng
 
@@ -58,7 +61,6 @@ Route::middleware(['auth', 'is_user'])->group(function () {
 
     // Danh sách ngành & trường (xem)
     Route::get('/majors', [MajorController::class, 'index'])->name('user.majors.index');
-    Route::get('/universities', [UniversityController::class, 'index'])->name('user.universities.index');
 });
 
 /*
