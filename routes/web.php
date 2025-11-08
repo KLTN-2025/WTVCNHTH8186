@@ -19,6 +19,7 @@ use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\UserSurveyController;
 use App\Http\Controllers\User\ChatController;
 use App\Http\Controllers\User\UserUniversityController;
+use App\Http\Controllers\User\UserAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +60,15 @@ Route::get('/guide', function () {
 Route::get('/support', function () {
     return view('user.support');
 })->name('user.support');
+
+
+Route::get('/login', [UserAuthController::class, 'showLogin'])->name('user.login');
+Route::post('/login', [UserAuthController::class, 'login']);
+
+Route::get('/register', [UserAuthController::class, 'showRegister'])->name('user.register');
+Route::post('/register', [UserAuthController::class, 'register']);
+
+Route::post('/logout', [UserAuthController::class, 'logout'])->name('user.logout');
 
 Route::middleware(['auth', 'is_user'])->group(function () {
     // Khảo sát định hướng

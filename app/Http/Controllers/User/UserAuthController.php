@@ -1,0 +1,72 @@
+<?php
+
+namespace App\Http\Controllers\User;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+
+class UserAuthController extends Controller
+{
+    // Hiển thị form đăng nhập
+    public function showLogin()
+    {
+        if (Auth::check()) return redirect()->route('user.survey');
+        return view('user.login');
+    }
+
+    // Xử lý đăng nhập
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended(route('user.survey'));
+        }
+
+        return back()->withErrors(['email' => 'Email hoặc mật khẩu không đúng.'])->onlyInput('email');
+    }
+
+    // Hiển thị form đăng ký
+    public function showRegister()
+    {
+        if (Auth::check()) return redirect()->route('user.survey');
+        return view('user.register');
+    }
+
+    // Xử lý đăng ký
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:100',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6|confirmed',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => 'user',
+        ]);
+
+        Auth::login($user);
+        return redirect()->route('user.survey');
+    }
+
+    // Đăng xuất
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login');
+    }
+}

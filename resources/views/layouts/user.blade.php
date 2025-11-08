@@ -5,7 +5,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@yield('title', 'Hệ thống Định hướng Ngành học')</title>
-
+    <meta name="description" content="Hệ thống định hướng ngành học và tư vấn nghề nghiệp cho học sinh sinh viên." />
+    <meta name="author" content="CareerGuide Team" />
+    <meta name="keywords" content="định hướng ngành học, tư vấn nghề nghiệp, khảo sát ngành học, chat AI, tra cứu trường học" />
+    <link rel="icon" type="image/x-icon" href="https://assets-global.website-files.com/5d48b7ac15f2c10c0ffae816/5d64ea576ed3ee71a1a0cd71_cropped-Site-Favicon-256.png" />
     <!-- Tailwind + Flowbite + FontAwesome -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
@@ -106,7 +109,7 @@
                             <i class="fa-solid fa-moon"></i>
                         </button>
 
-                        <a href="#"
+                        <a href="{{ route('user.login') }}"
                             class="hidden sm:flex items-center gap-3 px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-primary/60 transition">
                             <span
                                 class="relative inline-flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-primary to-blue-400 text-white">
