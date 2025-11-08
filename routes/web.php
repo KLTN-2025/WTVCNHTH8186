@@ -16,6 +16,7 @@ use App\Http\Controllers\{
 };
 
 use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\User\UserSurveyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,6 @@ use App\Http\Controllers\User\HomeController;
 |--------------------------------------------------------------------------
 */
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
 /*
 |--------------------------------------------------------------------------
 | Xác thực người dùng (Auth)
@@ -41,10 +41,13 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 | Khu vực người dùng (USER)
 |--------------------------------------------------------------------------
 */
+
+Route::get('/survey', [UserSurveyController::class, 'index'])->name('survey.index');
+Route::post('/survey', [UserSurveyController::class, 'store'])->name('survey.store');
+
 Route::middleware(['auth', 'is_user'])->group(function () {
     // Khảo sát định hướng
-    Route::get('/survey', [SurveyController::class, 'index'])->name('survey.index');
-    Route::post('/survey', [SurveyController::class, 'store'])->name('survey.store');
+
 
     // Chatbot AI tư vấn
     Route::get('/chatbot', [ChatbotController::class, 'index'])->name('chatbot.index');

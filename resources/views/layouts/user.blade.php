@@ -128,7 +128,7 @@
 
         <!-- SIDEBAR -->
         <aside id="sidebar"
-            class="fixed md:static top-[72px] left-0 h-[calc(100vh-72px)] w-72 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 flex flex-col transform -translate-x-full md:translate-x-0 transition-transform duration-300 z-30">
+            class="fixed md:static top-[72px] left-0 w-72 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 flex flex-col transform -translate-x-full md:translate-x-0 transition-transform duration-300 z-30">
 
             <div class="px-4 py-3">
                 <a href="#"
@@ -142,11 +142,11 @@
             </div>
 
             <nav class="flex-1 overflow-y-auto px-3 pb-3 space-y-1">
-                <a href="#" data-path="/"
+                <a href="{{ route('home') }}" data-path="/"
                     class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                     <i class="fa-solid fa-house"></i><span>Trang chủ</span>
                 </a>
-                <a href="#" data-path="/survey"
+                <a href="{{ route('survey.index') }}" data-path="/survey"
                     class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                     <i class="fa-solid fa-list-check"></i><span>Làm khảo sát</span>
                     <span class="ml-auto text-[10px] px-2 py-0.5 rounded bg-primary/10 text-primary">Mới</span>
@@ -177,7 +177,7 @@
                 </div>
             </nav>
 
-            <div class="border-t border-gray-200 dark:border-gray-800 p-4">
+            <!-- <div class="border-t border-gray-200 dark:border-gray-800 p-4">
                 <form method="POST" action="#">
                     @csrf
                     <button
@@ -185,11 +185,11 @@
                         <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
                     </button>
                 </form>
-            </div>
+            </div> -->
         </aside>
 
         <!-- MAIN -->
-        <main class="flex-1 md:ml-72">
+        <main class="flex-1 p-10">
             @yield('content')
         </main>
 
