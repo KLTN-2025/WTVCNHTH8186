@@ -13,7 +13,7 @@ class UserAuthController extends Controller
     // Hiển thị form đăng nhập
     public function showLogin()
     {
-        if (Auth::check()) return redirect()->route('user.survey');
+        if (Auth::check()) return redirect()->route('home');
         return view('user.login');
     }
 
@@ -28,7 +28,7 @@ class UserAuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended(route('user.survey'));
+            return redirect()->intended(route('survey.index'));
         }
 
         return back()->withErrors(['email' => 'Email hoặc mật khẩu không đúng.'])->onlyInput('email');

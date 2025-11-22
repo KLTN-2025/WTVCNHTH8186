@@ -63,7 +63,7 @@ Route::get('/support', function () {
 
 
 Route::get('/login', [UserAuthController::class, 'showLogin'])->name('user.login');
-Route::post('/login', [UserAuthController::class, 'login']);
+Route::post('/login', [UserAuthController::class, 'login'])->name('user.submitLogin');
 
 Route::get('/register', [UserAuthController::class, 'showRegister'])->name('user.register');
 Route::post('/register', [UserAuthController::class, 'register']);

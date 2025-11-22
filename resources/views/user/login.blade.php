@@ -25,7 +25,7 @@
             <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Định hướng ngành học của bạn bắt đầu từ đây</p>
         </div>
 
-        <form method="POST" action="{{ route('login') }}" class="space-y-4">
+        <form method="POST" action="{{ route('user.submitLogin') }}" class="space-y-4">
             @csrf
             <div>
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
