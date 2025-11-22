@@ -45,23 +45,6 @@ Route::get('/admin/logout', [AuthController::class, 'logout'])->name('logout');
 |--------------------------------------------------------------------------
 */
 
-Route::get('/survey', [UserSurveyController::class, 'index'])->name('survey.index');
-Route::post('/survey', [UserSurveyController::class, 'store'])->name('survey.store');
-Route::get('/survey/result', [UserSurveyController::class, 'result'])->name('survey.result');
-Route::get('/chat', [ChatController::class, 'index'])->name('user.chat');
-Route::post('/chat/send', [ChatController::class, 'send'])->name('user.chat.send');
-
-Route::get('/universities', [UserUniversityController::class, 'index'])->name('user.universities');
-
-
-Route::get('/guide', function () {
-    return view('user.guide');
-})->name('user.guide');
-
-Route::get('/support', function () {
-    return view('user.support');
-})->name('user.support');
-
 
 Route::get('/login', [UserAuthController::class, 'showLogin'])->name('user.login');
 Route::post('/login', [UserAuthController::class, 'login'])->name('user.submitLogin');
@@ -69,18 +52,27 @@ Route::post('/login', [UserAuthController::class, 'login'])->name('user.submitLo
 Route::get('/register', [UserAuthController::class, 'showRegister'])->name('user.register');
 Route::post('/register', [UserAuthController::class, 'register']);
 
-Route::post('/logout', [UserAuthController::class, 'logout'])->name('user.logout');
+Route::get('/logout', [UserAuthController::class, 'logout'])->name('user.logout');
 
 Route::middleware(['auth', 'is_user'])->group(function () {
-    // Khảo sát định hướng
+    Route::get('/survey', [UserSurveyController::class, 'index'])->name('survey.index');
+    Route::post('/survey', [UserSurveyController::class, 'store'])->name('survey.store');
+    Route::get('/survey/result', [UserSurveyController::class, 'result'])->name('survey.result');
+    Route::get('/chat', [ChatController::class, 'index'])->name('user.chat');
+    Route::post('/chat/send', [ChatController::class, 'send'])->name('user.chat.send');
+    Route::get('/universities', [UserUniversityController::class, 'index'])->name('user.universities');
+    
+    Route::get('/profile', [UserAuthController::class, 'profile'])->name('profile.index');
+    Route::post('/profile/update', [UserAuthController::class, 'profileUpdate'])->name('profile.updateSubmit');
 
 
-    // Chatbot AI tư vấn
-    Route::get('/chatbot', [ChatbotController::class, 'index'])->name('chatbot.index');
-    Route::post('/chatbot/send', [ChatbotController::class, 'send'])->name('chatbot.send');
+    Route::get('/guide', function () {
+        return view('user.guide');
+    })->name('user.guide');
 
-    // Danh sách ngành & trường (xem)
-    Route::get('/majors', [MajorController::class, 'index'])->name('user.majors.index');
+    Route::get('/support', function () {
+        return view('user.support');
+    })->name('user.support');
 });
 
 /*

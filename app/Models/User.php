@@ -12,7 +12,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $fillable = ['name', 'email', 'password', 'role', 'is_blocked'];
+    protected $fillable = ['name', 'email', 'password', 'role', 'phone', 'is_blocked'];
 
     public function surveyResults()
     {

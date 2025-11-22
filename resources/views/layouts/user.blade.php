@@ -109,14 +109,16 @@
                             <i class="fa-solid fa-moon"></i>
                         </button>
 
-                        <a href="{{ route('user.login') }}"
+                        <a href="{{ route('profile.index') }}"
                             class="hidden sm:flex items-center gap-3 px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-primary/60 transition">
                             <span
                                 class="relative inline-flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-primary to-blue-400 text-white">
                                 <i class="fa-solid fa-user"></i>
                             </span>
                             <div class="text-left leading-tight">
-                                <div class="text-sm font-medium">Tài khoản</div>
+                                <div class="text-sm font-medium">
+                                    {{ auth()->user()->name }}
+                                </div>
                                 <div class="text-xs text-gray-500 dark:text-gray-400">Cài đặt & hồ sơ</div>
                             </div>
                         </a>
@@ -174,6 +176,23 @@
                     <a href="{{ route('user.support') }}" data-path="/support"
                         class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                         <i class="fa-solid fa-headset"></i><span>Liên hệ hỗ trợ</span>
+                    </a>
+                </div>
+                <div class="pt-3 mt-3 border-t border-gray-200 dark:border-gray-800">
+                    <div class="px-3 pb-1 text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                        Tài khoản
+                    </div>
+
+                    <a href="{{ route('profile.index') }}" data-path="/profile"
+                    class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                        <i class="fa-solid fa-user-circle text-lg"></i>
+                        <span>Hồ sơ cá nhân</span>
+                    </a>
+
+                    <a href="{{ route('user.logout') }}" data-path="/logout"
+                    class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                        <i class="fa-solid fa-right-from-bracket text-lg"></i>
+                        <span>Đăng xuất</span>
                     </a>
                 </div>
             </nav>
