@@ -47,6 +47,7 @@ Route::get('/admin/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/survey', [UserSurveyController::class, 'index'])->name('survey.index');
 Route::post('/survey', [UserSurveyController::class, 'store'])->name('survey.store');
+Route::get('/survey/result', [UserSurveyController::class, 'result'])->name('survey.result');
 Route::get('/chat', [ChatController::class, 'index'])->name('user.chat');
 Route::post('/chat/send', [ChatController::class, 'send'])->name('user.chat.send');
 

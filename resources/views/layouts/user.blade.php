@@ -145,24 +145,22 @@
             </div>
 
             <nav class="flex-1 overflow-y-auto px-3 pb-3 space-y-1">
-                <a href="{{ route('home') }}" data-path="/"
+                <a href="{{ route('user.chat') }}" data-path="/chat"
                     class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-                    <i class="fa-solid fa-house"></i><span>Trang chủ</span>
+                    <i class="fa-solid fa-comments"></i><span>Chat với AI</span>
                 </a>
+
                 <a href="{{ route('survey.index') }}" data-path="/survey"
                     class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                     <i class="fa-solid fa-list-check"></i><span>Làm khảo sát</span>
                     <span class="ml-auto text-[10px] px-2 py-0.5 rounded bg-primary/10 text-primary">Mới</span>
                 </a>
-                <a href="{{ route('user.chat') }}" data-path="/chat"
-                    class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-                    <i class="fa-solid fa-comments"></i><span>Chat với AI</span>
-                </a>
+                
                 <a href="{{ route('user.universities') }}" data-path="/universities"
                     class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                     <i class="fa-solid fa-building-columns"></i><span>Trường học</span>
                 </a>
-                <a href="#" data-path="/results"
+                <a href="{{ route('survey.result') }}" data-path="/survey/results"
                     class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                     <i class="fa-solid fa-chart-line"></i><span>Kết quả</span>
                 </a>

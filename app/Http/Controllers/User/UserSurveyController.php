@@ -58,7 +58,7 @@ class UserSurveyController extends Controller
             ]
         );
 
-        return redirect()->route('user.survey.result')->with('success', 'Đã lưu kết quả khảo sát.');
+        return redirect()->route('survey.result')->with('success', 'Đã lưu kết quả khảo sát.');
     }
 
     /**
@@ -74,8 +74,14 @@ class UserSurveyController extends Controller
             return redirect()->route('user.survey')->with('error', 'Bạn chưa làm khảo sát.');
         }
 
-        $major = Major::find($result->suggested_major_id);
+        $major = Major::with('universities')->find($result->suggested_major_id);
 
-        return view('user.survey_result', compact('major', 'result'));
+        $answers = SurveyAnswer::where('user_id', $userId)
+            ->with('question')
+            ->orderBy('question_id')
+            ->get();
+
+        return view('user.survey_result', compact('major', 'result', 'answers'));
     }
+
 }
