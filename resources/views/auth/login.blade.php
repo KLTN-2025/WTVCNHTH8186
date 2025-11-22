@@ -91,10 +91,6 @@
                         </div>
                     </div>
                 </form>
-
-                <p class="mb-1 text-center">
-                    <a href="{{ route('register.form') }}">Chưa có tài khoản? Đăng ký ngay</a>
-                </p>
             </div>
         </div>
     </div>

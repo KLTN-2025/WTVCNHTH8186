@@ -6,15 +6,13 @@
 @section('content')
     <div class="mx-auto">
 
-        <!-- Tiêu đề -->
         <div class="mb-6 text-center">
             <h2 class="text-2xl font-semibold text-primary mb-1">Khảo sát định hướng ngành học</h2>
             <p class="text-gray-600 dark:text-gray-400 text-sm">
-                Hãy trả lời trung thực các câu hỏi dưới đây để hệ thống gợi ý ngành học phù hợp với bạn.
+                Hãy trả lời trung thực các câu hỏi dưới đây.
             </p>
         </div>
 
-        <!-- Thanh tiến trình -->
         <div class="mb-8">
             <div class="flex justify-between text-xs text-gray-600 dark:text-gray-400 mb-1">
                 <span>Tiến trình</span>
@@ -25,8 +23,7 @@
             </div>
         </div>
 
-        <!-- Form -->
-        <form method="POST" action="#">
+        <form method="POST" action="{{ route('survey.store') }}">
             @csrf
 
             @php
@@ -36,55 +33,41 @@
 
             @for($page = 1; $page <= $totalPages; $page++)
                 <div class="survey-page {{ $page == 1 ? '' : 'hidden' }}" data-page="{{ $page }}">
-                    @foreach($questions->forPage($page, $pageSize) as $index => $q)
+                    @foreach($questions->forPage($page, $pageSize) as $q)
                         <div
-                            class="mb-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm p-5 border border-gray-100 dark:border-gray-700 transition hover:shadow-md">
+                            class="mb-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm p-5 border border-gray-100 dark:border-gray-700">
                             <h3 class="font-medium text-gray-800 dark:text-gray-200 mb-3">
-                                {{ $loop->iteration + ($page - 1) * $pageSize }}. {{ $q->question_text }}
+                                {{ ($loop->iteration + ($page - 1) * $pageSize) }}. {{ $q->question_text }}
                             </h3>
 
-                            <div class="space-y-2">
-                                @foreach($q->options as $opt)
-                                    <label
-                                        class="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-300 cursor-pointer hover:text-primary">
-                                        @if($q->type === 'single')
-                                            <input type="radio" name="answers[{{ $q->id }}]" value="{{ $opt }}"
-                                                class="text-primary focus:ring-primary">
-                                        @else
-                                            <input type="checkbox" name="answers[{{ $q->id }}][]" value="{{ $opt }}"
-                                                class="text-primary focus:ring-primary">
-                                        @endif
-                                        <span>{{ $opt }}</span>
-                                    </label>
-                                @endforeach
-                            </div>
+                            <input type="text" name="answers[{{ $q->id }}]"
+                                class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200"
+                                placeholder="Nhập câu trả lời...">
                         </div>
                     @endforeach
                 </div>
             @endfor
 
-            <!-- Nút điều hướng -->
             <div class="flex justify-between items-center mt-8">
                 <button type="button" id="prevBtn"
-                    class="px-5 py-2 rounded-lg border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                    class="px-5 py-2 rounded-lg border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition disabled:opacity-50"
                     disabled>
-                    <i class="fa-solid fa-arrow-left"></i> Trước
+                    Trước
                 </button>
 
                 <button type="button" id="nextBtn"
                     class="px-5 py-2 rounded-lg bg-primary text-white hover:bg-blue-700 transition">
-                    Tiếp theo <i class="fa-solid fa-arrow-right"></i>
+                    Tiếp theo
                 </button>
 
                 <button type="submit" id="submitBtn"
                     class="hidden px-6 py-2 bg-primary hover:bg-primary-700 text-white rounded-lg transition">
-                    Gửi kết quả <i class="fa-solid fa-paper-plane ml-2"></i>
+                    Gửi kết quả
                 </button>
             </div>
         </form>
     </div>
 
-    <!-- Script phân trang -->
     <script>
         const pages = document.querySelectorAll('.survey-page');
         const progressBar = document.getElementById('progress-bar');
@@ -92,6 +75,7 @@
         const nextBtn = document.getElementById('nextBtn');
         const submitBtn = document.getElementById('submitBtn');
         const pageNum = document.getElementById('page-number');
+
         let currentPage = 1;
         const totalPages = {{ $totalPages }};
 

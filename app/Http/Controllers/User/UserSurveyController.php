@@ -17,19 +17,7 @@ class UserSurveyController extends Controller
      */
     public function index()
     {
-        // Lấy toàn bộ câu hỏi khảo sát
         $questions = SurveyQuestion::orderBy('id')->get();
-
-        // Nếu trường options (danh sách lựa chọn) được lưu trong DB dưới dạng chuỗi 'A|B|C'
-        // thì chuyển sang mảng để render
-        foreach ($questions as $q) {
-            if (property_exists($q, 'options_text')) {
-                $q->options = explode('|', $q->options_text);
-            } elseif (!isset($q->options)) {
-                // fallback nếu bạn lưu ở cột khác hoặc cần gắn thủ công
-                $q->options = ['Đồng ý', 'Không đồng ý'];
-            }
-        }
 
         return view('user.survey', compact('questions'));
     }
@@ -47,22 +35,18 @@ class UserSurveyController extends Controller
 
         $answers = $request->input('answers', []);
 
-        // Xóa câu trả lời cũ nếu người dùng làm lại khảo sát
+        // Xóa câu trả lời cũ
         SurveyAnswer::where('user_id', $userId)->delete();
 
         foreach ($answers as $questionId => $value) {
             SurveyAnswer::create([
                 'user_id' => $userId,
                 'question_id' => $questionId,
-                'answer' => is_array($value) ? implode(', ', $value) : $value,
+                'answer' => trim($value),
             ]);
         }
 
-        /**
-         * Xử lý logic tính toán hoặc gọi AI
-         * Ở đây ví dụ gợi ý ngẫu nhiên một ngành phù hợp.
-         * Bạn có thể thay bằng thuật toán gợi ý thật hoặc API GPT.
-         */
+        // Tạo kết quả mẫu
         $suggestedMajor = Major::inRandomOrder()->first();
 
         SurveyResult::updateOrCreate(

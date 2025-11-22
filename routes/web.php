@@ -32,8 +32,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 | Xác thực người dùng (Auth)
 |--------------------------------------------------------------------------
 */
-Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
-Route::post('/register', [AuthController::class, 'register'])->name('register');
+// Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
+// Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 Route::get('/admin/login', [AuthController::class, 'showLoginForm'])->name('login.form');
 Route::post('/admin/login', [AuthController::class, 'login'])->name('login');
