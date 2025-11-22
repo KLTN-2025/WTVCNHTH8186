@@ -85,7 +85,7 @@
                         <button id="menuBtn" class="md:hidden text-2xl text-gray-700 dark:text-gray-200">
                             <i class="fa-solid fa-bars"></i>
                         </button>
-                        <a href="#" class="flex items-center gap-2">
+                        <a href="{{ route('home') }}" class="flex items-center gap-2">
                             <span
                                 class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-white">
                                 <i class="fa-solid fa-compass"></i>

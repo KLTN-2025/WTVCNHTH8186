@@ -13,7 +13,7 @@ class UserAuthController extends Controller
     // Hiển thị form đăng nhập
     public function showLogin()
     {
-        if (Auth::check()) return redirect()->route('home');
+        if (Auth::check()) return redirect()->route('user.chat');
         return view('user.login');
     }
 
@@ -37,7 +37,7 @@ class UserAuthController extends Controller
     // Hiển thị form đăng ký
     public function showRegister()
     {
-        if (Auth::check()) return redirect()->route('user.survey');
+        if (Auth::check()) return redirect()->route('user.chat');
         return view('user.register');
     }
 
