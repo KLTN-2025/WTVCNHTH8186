@@ -54,7 +54,7 @@ class ChatController extends Controller
         $careerPaths = $major ? $major->careerPaths()->pluck('title')->toArray() : [];
         $careerPathList = implode(', ', $careerPaths);
 
-        $prompt = "Ngành học: {$majorName}.".
+        $prompt = "Ngành học tương lai của người này là: {$majorName}.".
                  "Hãy trả lời tự nhiên cho câu hỏi: {$text}"; 
         
         // Lưu câu hỏi người dùng
