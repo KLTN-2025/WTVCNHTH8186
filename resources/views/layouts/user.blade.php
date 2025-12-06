@@ -7,8 +7,10 @@
     <title>@yield('title', 'Hệ thống Định hướng Ngành học')</title>
     <meta name="description" content="Hệ thống định hướng ngành học và tư vấn nghề nghiệp cho học sinh sinh viên." />
     <meta name="author" content="CareerGuide Team" />
-    <meta name="keywords" content="định hướng ngành học, tư vấn nghề nghiệp, khảo sát ngành học, chat AI, tra cứu trường học" />
-    <link rel="icon" type="image/x-icon" href="https://assets-global.website-files.com/5d48b7ac15f2c10c0ffae816/5d64ea576ed3ee71a1a0cd71_cropped-Site-Favicon-256.png" />
+    <meta name="keywords"
+        content="định hướng ngành học, tư vấn nghề nghiệp, khảo sát ngành học, chat AI, tra cứu trường học" />
+    <link rel="icon" type="image/x-icon"
+        href="https://assets-global.website-files.com/5d48b7ac15f2c10c0ffae816/5d64ea576ed3ee71a1a0cd71_cropped-Site-Favicon-256.png" />
     <!-- Tailwind + Flowbite + FontAwesome -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
@@ -135,14 +137,32 @@
         <aside id="sidebar"
             class="fixed md:static top-[72px] left-0 w-72 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 flex flex-col transform -translate-x-full md:translate-x-0 transition-transform duration-300 z-30">
 
+            @php
+                $totalQuestions = \App\Models\SurveyQuestion::count();
+
+                $answered = \App\Models\SurveyAnswer::where('user_id', auth()->id())
+                    ->distinct('question_id')
+                    ->count('question_id');
+
+                $progress = $totalQuestions > 0
+                    ? round(($answered / $totalQuestions) * 100)
+                    : 0;
+            @endphp
+
+
             <div class="px-4 py-3">
                 <a href="#"
                     class="block w-full rounded-xl bg-gradient-to-br from-primary/10 to-blue-200/30 dark:from-blue-500/10 dark:to-blue-400/10 p-4">
+
                     <div class="text-sm text-gray-600 dark:text-gray-300">Tiến trình</div>
+
                     <div class="mt-2 h-2 w-full rounded-full bg-gray-200 dark:bg-gray-800 overflow-hidden">
-                        <div class="h-2 bg-primary rounded-full" style="width: 42%;"></div>
+                        <div class="h-2 bg-primary rounded-full" style="width: {{ $progress }}%;"></div>
                     </div>
-                    <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">Khảo sát: 6/14 câu</div>
+
+                    <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                        Khảo sát: {{ $answered }}/{{ $totalQuestions }} câu
+                    </div>
                 </a>
             </div>
 
@@ -157,7 +177,7 @@
                     <i class="fa-solid fa-list-check"></i><span>Làm khảo sát</span>
                     <span class="ml-auto text-[10px] px-2 py-0.5 rounded bg-primary/10 text-primary">Mới</span>
                 </a>
-                
+
                 <a href="{{ route('user.universities') }}" data-path="/universities"
                     class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                     <i class="fa-solid fa-building-columns"></i><span>Trường học</span>
@@ -184,13 +204,13 @@
                     </div>
 
                     <a href="{{ route('profile.index') }}" data-path="/profile"
-                    class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                        class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                         <i class="fa-solid fa-user-circle text-lg"></i>
                         <span>Hồ sơ cá nhân</span>
                     </a>
 
                     <a href="{{ route('user.logout') }}" data-path="/logout"
-                    class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                        class="nav-link flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                         <i class="fa-solid fa-right-from-bracket text-lg"></i>
                         <span>Đăng xuất</span>
                     </a>
