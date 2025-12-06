@@ -96,14 +96,16 @@
                         </a>
                     </div>
 
-                    <div class="hidden md:flex items-center gap-3 flex-1 max-w-xl mx-6">
+                    <form action="{{ route('search') }}" method="GET" class="flex-1 max-w-xl mx-6 hidden md:flex">
                         <div class="relative flex-1">
-                            <i
-                                class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                            <input type="search" placeholder="Tìm ngành, trường, câu hỏi…"
+                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                            <input 
+                                type="search" 
+                                name="q"
+                                placeholder="Tìm ngành, trường, câu hỏi…"
                                 class="w-full rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 pl-10 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40">
                         </div>
-                    </div>
+                    </form>
 
                     <div class="flex items-center gap-2">
                         <button id="toggleTheme"

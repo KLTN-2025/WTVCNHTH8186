@@ -20,6 +20,7 @@ use App\Http\Controllers\User\UserSurveyController;
 use App\Http\Controllers\User\ChatController;
 use App\Http\Controllers\User\UserUniversityController;
 use App\Http\Controllers\User\UserAuthController;
+use App\Http\Controllers\User\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +65,7 @@ Route::middleware(['auth', 'is_user'])->group(function () {
     
     Route::get('/profile', [UserAuthController::class, 'profile'])->name('profile.index');
     Route::post('/profile/update', [UserAuthController::class, 'profileUpdate'])->name('profile.updateSubmit');
+    Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 
     Route::get('/guide', function () {
